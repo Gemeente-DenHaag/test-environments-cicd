@@ -1,4 +1,4 @@
-name: Build and push image and deploy to aks
+name: Test cicd
 
 on:
   push:
