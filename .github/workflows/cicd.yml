@@ -49,6 +49,9 @@ jobs:
       - name: 'Echo github context'
         run: |
           echo 'json ${{ fromJSON(steps.meta.outputs.json).tags }}'
+          blaat=join( ${{ fromJSON(steps.meta.outputs.json).tags }})
+          echo 'blaat $blaat'
+          echo 'blaat  ${{ blaat }}'
           DEZEPORT=${{fromJson(steps.meta.outputs.json).tags}}
           echo $DEZEPORT
           echo "$GITHUB_CONTEXT"
