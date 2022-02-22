@@ -48,7 +48,7 @@ jobs:
       
       - name: 'Echo github context'
         run: |
-          echo "json ${{ fromJSON(steps.meta.outputs.tags) }}"
+          echo 'json ${{ fromJSON(steps.meta.outputs.json.tags) }}'
           echo "$GITHUB_CONTEXT"
 
   deploy-to-test:
