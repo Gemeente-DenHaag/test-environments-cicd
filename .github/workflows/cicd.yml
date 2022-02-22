@@ -49,7 +49,7 @@ jobs:
       - name: 'Echo github context'
         run: |
           echo 'json ${{ fromJSON(steps.meta.outputs.json).tags }}'
-          BLAAT= ${{ join(fromJSON(steps.meta.outputs.json).tags)) }}
+          BLAAT= ${{ join(fromJSON(steps.meta.outputs.json).tags) }}
           echo 'blaat  ${{ BLAAT }}'
           DEZEPORT=${{fromJson(steps.meta.outputs.json).tags}}
           echo $DEZEPORT
