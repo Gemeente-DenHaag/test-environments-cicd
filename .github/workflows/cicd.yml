@@ -48,7 +48,9 @@ jobs:
       
       - name: 'Echo github context'
         run: |
-          echo 'json ${{ toJSON(steps.meta.outputs.json).tags }}'
+          echo 'json ${{ fromJSON(steps.meta.outputs.json).tags }}'
+          DEZEPORT=${{fromJson(steps.meta.outputs.json).tags}}
+          echo $DEZEPORT
           echo "$GITHUB_CONTEXT"
 
   deploy-to-test:
