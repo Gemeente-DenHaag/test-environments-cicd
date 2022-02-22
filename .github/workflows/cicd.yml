@@ -34,9 +34,22 @@ jobs:
     steps:
       - name: 'Check build step running'
         run: echo build
-
+        
+      - name: 'Docker meta'
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: testserver/zgw/klantportaal
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=ref,event=tag
+            type=sha
+      
       - name: 'Echo github context'
-        run: echo "$GITHUB_CONTEXT"
+        run: |
+          echo "json ${{ fromJSON(steps.meta.outputs.tags) }}"
+          echo "$GITHUB_CONTEXT"
 
   deploy-to-test:
     if: github.ref_name == 'develop' || contains(github.ref, 'bugfix/')
