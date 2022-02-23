@@ -34,7 +34,15 @@ jobs:
     steps:
       - name: 'Check build step running'
         run: echo build
-        
+      
+      - name: Generate docker tag ID
+        id: prep
+        run: |
+            branch=${GITHUB_REF##*/}
+            sha=${GITHUB_SHA::8}
+            ts=$(date +%s)
+            echo "::set-output name=BUILD_ID::${branch}-${sha}-${ts}"
+      
       - name: 'Docker meta'
         id: meta
         uses: docker/metadata-action@v3
@@ -45,6 +53,7 @@ jobs:
             type=ref,event=pr
             type=ref,event=tag
             type=sha
+            ${{ steps.prep.outputs.BUILD_ID }}
       
       - name: 'Echo github context'
         run: |
