@@ -50,7 +50,7 @@ jobs:
         run: |
           echo 'json ${{ fromJSON(steps.meta.outputs.json).tags }}'
           BLAAT=${{ join(fromJSON(steps.meta.outputs.json).tags) }}
-          echo $BLAAT
+          echo {$BLAAT}
           DEZEPORT=${{fromJson(steps.meta.outputs.json).tags}}
           echo $DEZEPORT
           echo "$GITHUB_CONTEXT"
