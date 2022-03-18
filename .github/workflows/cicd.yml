@@ -47,6 +47,18 @@ jobs:
       - name: 'Check deploy to test step running'
         run: echo deploy to test
 
+      - name: 'Deploy to AKS'
+        uses: Gemeente-DenHaag/custom-actions/deploy-to-aks@main
+        # uses: Gemeente-DenHaag/custom-actions/deploy-to-aks@v0.0.3-dta
+        with:
+          api-server-url: '${{ secrets.API_SERVER_URL }}'
+          sa-secret-name: '${{ secrets.SA_SECRET_NAME }}'
+          sa-secret-token: '${{ secrets.SA_SECRET_TOKEN }}'
+          release-name: test-new-release
+          namespace: dhonline-test
+          full-image-url: nginx:latest
+          extra-params: '--set name=test-new-release'
+
   deploy-to-acc:
     if: contains(github.ref, 'release/') || contains(github.ref, 'hotfix/')
     runs-on: ubuntu-latest
