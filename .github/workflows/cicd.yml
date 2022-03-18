@@ -52,8 +52,7 @@ jobs:
         # uses: Gemeente-DenHaag/custom-actions/deploy-to-aks@v0.0.3-dta
         with:
           api-server-url: '${{ secrets.API_SERVER_URL }}'
-          sa-secret-name: '${{ secrets.SA_SECRET_NAME }}'
-          sa-secret-token: '${{ secrets.SA_SECRET_TOKEN }}'
+          sa-secret: '${{ secrets.SA_SECRET }}'
           release-name: test-new-release
           namespace: dhonline-test
           full-image-url: nginx:latest
